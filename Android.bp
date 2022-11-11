@@ -1,0 +1,59 @@
+package {
+    default_applicable_licenses: ["external_xz_license"],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "external_xz_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "legacy_unencumbered",
+    ],
+    license_text: [
+        "COPYING",
+    ],
+}
+
+cc_library_static {
+    name: "libmicrolzma", // Sadly lzmasdk have take the "liblzma" name
+    host_supported: true,
+    recovery_available: true,
+    srcs: [
+        "src/liblzma/check/*.c",
+        "src/liblzma/common/*.c",
+        "src/liblzma/delta/*.c",
+        "src/liblzma/lz/*.c",
+        "src/liblzma/lzma/*.c",
+        "src/liblzma/rangecoder/*.c",
+        "src/liblzma/simple/*.c",
+        "src/common/*.c"
+    ],
+
+    exclude_srcs: [
+        "src/liblzma/check/crc32_small.c",
+        "src/liblzma/check/crc64_small.c",
+        "src/liblzma/check/crc32_tablegen.c",
+	    "src/liblzma/check/crc64_tablegen.c",
+    ],
+
+    local_include_dirs: [
+        "src/liblzma/api",
+        "src/common",
+        "src/liblzma/check",
+        "src/liblzma/common",
+        "src/liblzma/delta",
+        "src/liblzma/lz",
+        "src/liblzma/lzma",
+        "src/liblzma/rangecoder",
+        "src/liblzma/simple",
+    ],
+
+    cflags: [
+        "-DHAVE_CONFIG_H",
+        "-Wall",
+        "-Werror",
+    ],
+
+    export_include_dirs: ["src/liblzma/api/"],
+}
