@@ -1,0 +1,5 @@
+{
+    "name": "acme",
+    "fetch": "https://github.com/AcmeUI/android_external_xz",
+    "revision": "refs/heads/taffy"
+}
